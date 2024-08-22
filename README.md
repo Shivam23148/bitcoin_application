@@ -25,7 +25,7 @@ This repository contains the implementation of the Ampiy app's Home Page, design
 
 ## Screen Recording
 
-![APP](assets/screen_recording/Crypto_Screenrecording.mp4)
+[APP](assets/screen_recording/Crypto_Screenrecording.mp4)
 
 ## Code Structure
 
