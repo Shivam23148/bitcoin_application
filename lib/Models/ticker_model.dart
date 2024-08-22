@@ -1,14 +1,14 @@
 class TickerData {
   final String type;
   final String symbol;
-  final int priceChange;
-  final int priceChangePercent;
-  final int currentPrice;
-  final int openPrice;
-  final int highPrice;
-  final int lowPrice;
-  final int bestBidPrice;
-  final int bestAskPrice;
+  final String priceChange;
+  final String priceChangePercent;
+  final String currentPrice;
+  final String openPrice;
+  final String highPrice;
+  final String lowPrice;
+  final String bestBidPrice;
+  final String bestAskPrice;
 
   TickerData({
     required this.type,
@@ -27,14 +27,14 @@ class TickerData {
     return TickerData(
       type: json['T'] as String,
       symbol: json['s'] as String,
-      priceChange: json['p'],
-      priceChangePercent: json['P'],
-      currentPrice: json['c'],
-      openPrice: json['o'],
-      highPrice: json['h'],
-      lowPrice: json['l'],
-      bestBidPrice: json['b'],
-      bestAskPrice: json['a'],
+      priceChange: json['p'] as String,
+      priceChangePercent: json['P'] as String,
+      currentPrice: json['c'] as String,
+      openPrice: json['o'] as String,
+      highPrice: json['h'] as String,
+      lowPrice: json['l'] as String,
+      bestBidPrice: json['b'] as String,
+      bestAskPrice: json['a'] as String,
     );
   }
 

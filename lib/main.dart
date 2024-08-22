@@ -1,5 +1,4 @@
-import 'package:bitcoin_application/Screens/DummyScreen/dummy_screen.dart';
-import 'package:bitcoin_application/Screens/HomeScreen/home_screen.dart';
+import 'package:bitcoin_application/Screens/SplashScreen/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,6 +10,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'Flutter Demo', home: HomeScreen());
+    return MaterialApp(
+      title: 'Coins',
+      home: SplashScreen(),
+      debugShowCheckedModeBanner: false,
+    );
   }
 }

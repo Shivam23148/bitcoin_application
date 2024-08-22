@@ -8,6 +8,12 @@ class WebSocketDataRecievedEvent extends HomeEvent {
   WebSocketDataRecievedEvent(this.data);
 }
 
+class SearchCoinsEvent extends HomeEvent {
+  final String querry;
+
+  SearchCoinsEvent(this.querry);
+}
+
 class WebSocketErrorEvent extends HomeEvent {
   final String error;
 

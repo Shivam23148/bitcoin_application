@@ -7,7 +7,8 @@ import 'package:bitcoin_application/Service/websocket_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  final WebSockerService webSockerService;
+  final WebSocketService webSockerService;
+  List<TickerData> _allTickerData = [];
 
   HomeBloc(this.webSockerService) : super(TickerInitial()) {
     on<WebSocketConnection>((event, emit) {
@@ -15,10 +16,24 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     });
     on<WebSocketDataRecievedEvent>((event, emit) {
       print("Data recieved is : ${event.data}");
-      emit(TickerDataLoaded(List<TickerData>.from(event.data['data'])));
+      _allTickerData = (event.data['data'] as List)
+          .map((item) => TickerData.fromJson(item))
+          .toList();
+      emit(TickerDataLoaded(_allTickerData));
     });
     on<WebSocketErrorEvent>((event, emit) {
       emit(TickerError(event.error));
+    });
+    on<SearchCoinsEvent>((event, emit) {
+      if (event.querry.isNotEmpty) {
+        final query = event.querry.toLowerCase();
+        final filteredData = _allTickerData.where((ticker) {
+          return ticker.symbol.toLowerCase().contains(query);
+        }).toList();
+        emit(TickerDataLoaded(filteredData));
+      } else if (event.querry.isEmpty) {
+        emit(TickerDataLoaded(_allTickerData));
+      }
     });
   }
   void connectWebSocket(Emitter<HomeState> emit) {
